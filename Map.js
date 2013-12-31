@@ -1,5 +1,6 @@
 (function () {
-    var CHART_DIV_ID = "chart_div",
+    var BODY_ID = "body",
+    	CHART_DIV_ID = "chart_div",
     	EXTRAS_HEIGHT = 185,
     	CHART_WIDTH_TO_HEIGHT_RATIO = 1.8;
 
@@ -55,10 +56,14 @@
     Map.prototype._initialize = function () {
     	var windowHeight = $(window).height(),
 			chartHeight = windowHeight - EXTRAS_HEIGHT,
-			chartDiv = document.getElementById(CHART_DIV_ID);
+			chartWidth = chartHeight * CHART_WIDTH_TO_HEIGHT_RATIO,			
+			chartDiv = document.getElementById(CHART_DIV_ID),
+			body = document.getElementById(BODY_ID);
 	
 		chartDiv.style.height = chartHeight + "px";
-		chartDiv.style.width = chartHeight * CHART_WIDTH_TO_HEIGHT_RATIO + "px";         	
+		chartDiv.style.width = chartWidth + "px"; 
+		body.style.width = chartWidth + 100 + "px";
+		
 	    this.chart = new google.visualization.GeoChart(document.getElementById(CHART_DIV_ID));
 	    this.draw(this.region, this.activeCountry);
     };
