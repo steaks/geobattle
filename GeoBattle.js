@@ -22,8 +22,6 @@
             stopGame: "stopGame"
         };
 
-    GeoBattle.map.initialize();
-
     $(document).ready(function () {
 
         $(SELECTOR_PAUSE_GAME).on(EVENT_CLICK, function (e) {

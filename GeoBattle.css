@@ -40,8 +40,8 @@ body
 }
 #chart_div
 {
-	height: 750px;
-	width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
 }
 .settings
 {
