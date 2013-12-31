@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="magnific-popup/magnific-popup.css"> 
+        <link rel="stylesheet" type="text/css" href="GeoBattle.css">
+        <link rel="stylesheet" type="text/css" href="Timer.css">
+        <link rel="stylesheet" type="text/css" href="Team.css">
+        <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+        <script type="text/javascript" src="jquery/jquery-2.0.3.js"></script>
+        <script src="magnific-popup/jquery.magnific-popup.js"></script> 
+        <script type="text/javascript" src="tipsy/tooltipsy.min.js"></script>
+        <script type="text/javascript" src="Infrastructure.js"></script>
+        <script type="text/javascript" src="Region.js"></script>
+        <script type="text/javascript" src="Map.js"></script>
+        <script type="text/javascript" src="Timer.js"></script>
+        <script type="text/javascript" src="Team.js"></script>
+        <script type="text/javascript" src="Game.js"></script>
+        <script type="text/javascript" src="Settings.js"></script>
+        <script type="text/javascript" src="GeoBattle.js"></script>
+    </head>
+    <body>
+        <div id="settings" class="settings mfp-hide">
+            <div class="settings-section">
+                <div id="dd" class="wrapper-dropdown-5" tabindex="1"><span class="settings-region-selection" data-region-selection="world">Select a region</span>
+                    <ul class="dropdown">
+                        <li><a class="region" href="#" data-region-selection="world">World</a></li>
+                        <li><a class="region" href="#" data-region-selection="africa">Africa</a></li>
+                        <li><a class="region" href="#" data-region-selection="europe">Europe</a></li>
+                        <li><a class="region" href="#" data-region-selection="americas">Americas</a></li>
+                        <li><a class="region" href="#" data-region-selection="asia">Asia</a></li>
+                        <li><a class="region" href="#" data-region-selection="oceania">Oceania</a></li>
+                        <li><a class="region" href="#" data-region-selection="unitedStates">United States</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="select-time settings-section">
+                <label>How long will your game last?</label>
+                <div class="select-time-inputs-wrapper">
+                    <input class="settings-minutes" name="settings-minutes" type="text" value="5" /> : <input class="settings-seconds" name="settings-seconds" type="text" value="00" />
+                </div>
+            </div>
+            <div class="select-durations settings-section">
+                <label for="active-duration">How long should active countries/states appear?</label>
+                <br />
+                <input class="settings-active-duration" name="settings-active-duration" type="text" value="4" />
+                <label>seconds</label>
+            </div>
+
+            <div class="select-durations settings-section">
+                <label for="active-duration">How long should we break between active countries/states?</label>
+                <br />
+                <input class="settings-break-duration" name="settings-break-duration" type="text" value="2" />
+                <label>seconds</label>
+            </div>
+
+            <div class="select-teams settings-section">
+                <label for="settings-teams">What teams are playing?</label>
+                <br />
+                <div class="settings-team-wrapper">
+                    <label for="settings-team">Name:</label>
+                    <input class="settings-team" name="settings-team" type="text" value="" />
+                    <label for="settings-team-score">Score:</label>
+                    <input class="settings-team-score" name="settings-team-score" type="text" data-user-input="false" value="" />
+                </div>
+                <div class="settings-team-wrapper">
+                    <label for="settings-team">Name:</label>
+                    <input class="settings-team" name="settings-team" type="text" value="" />
+                    <label for="settings-team-score">Score:</label>
+                    <input class="settings-team-score" name="settings-team-score" type="text" data-user-input="false" value="" />
+                </div>
+                <div class="settings-team-wrapper">
+                    <label for="settings-team">Name:</label>
+                    <input class="settings-team" name="settings-team" type="text" value="" />
+                    <label for="settings-team-score">Score:</label>
+                    <input class="settings-team-score" name="settings-team-score" type="text" data-user-input="false" value="" />
+                </div>
+                <div class="settings-team-wrapper">
+                    <label for="settings-team">Name:</label>
+                    <input class="settings-team" name="settings-team" type="text" value="" />
+                    <label for="settings-team-score">Score:</label>
+                    <input class="settings-team-score" name="settings-team-score" type="text" data-user-input="false" value="" />
+                </div>
+                <div class="settings-team-wrapper">
+                    <label for="settings-team">Name:</label>
+                    <input class="settings-team" name="settings-team" type="text" value="" />
+                    <label for="settings-team-score">Score:</label>
+                    <input class="settings-team-score" name="settings-team-score" type="text" data-user-input="false" value="" />
+                </div>
+                <div class="settings-team-wrapper">
+                    <label for="settings-team">Name:</label>
+                    <input class="settings-team" name="settings-team" type="text" value="" />
+                    <label for="settings-team-score">Score:</label>
+                    <input class="settings-team-score" name="settings-team-score" type="text" data-user-input="false" value="" />
+                </div>
+                <div class="settings-team-wrapper">
+                    <label for="settings-team">Name:</label>
+                    <input class="settings-team" name="settings-team" type="text" value="" />
+                    <label for="settings-team-score">Score:</label>
+                    <input class="settings-team-score" name="settings-team-score" type="text" data-user-input="false" value="" />
+                </div>
+                <div class="settings-team-wrapper">
+                    <label for="settings-team">Name:</label>
+                    <input class="settings-team" name="settings-team" type="text" value="" />
+                    <label for="settings-team-score">Score:</label>
+                    <input class="settings-team-score" name="settings-team-score" type="text" data-user-input="false" value="" />
+                </div>
+            </div>
+
+            <div class="submit-settings">
+                <input type="submit" class="submit-settings-button" value="play!">
+            </div>
+        </div>
+        <div class="game">
+            <div id="chart_div"></div>
+            <div class="teams">
+            </div>
+            <div class="clock">
+                <ul>
+                    <li class="min">0</li>
+                    <li class="Li1">:</li>
+                    <li class="sec">00</li>
+                </ul>
+                <div class="single-button single-button-left">
+                    <input type="submit" class="pause-game" value="Pause game"/>
+                </div>
+                <div class="single-button single-button-right start-new-game-button">
+                    <input type="submit" class="stop-game" data-value="startNewGame" value="Start a new game"/>
+                </div>
+            </div>
+        </div>
+    </body>
+    
+</html>

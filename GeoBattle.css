@@ -1,0 +1,258 @@
+.button-bar
+{
+	text-align: center;
+}
+.single-button
+{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.single-button-left
+{
+	float: left;
+	margin-top: -87px;
+	margin-left: 110px;
+}
+
+.start-new-game-button
+{
+	margin-right: 85px;
+}
+
+.stop-game-button
+{
+	margin-right: 120px;
+}
+
+.single-button-right
+{
+	float: right;
+	margin-top: -87px;
+}
+
+body
+{
+	width: 1200px; 
+	height: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#chart_div
+{
+	height: 750px;
+	width: 1200px;
+}
+.settings
+{
+	width: 300px;
+	height: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.settings-section
+{
+	margin-bottom: 40px;
+}
+
+.hidden
+{
+	display: none;
+}
+
+.wrapper-dropdown-5 {
+    /* Size & position */
+    position: relative;
+    width: 150px;
+    margin: 0 auto;
+    padding: 12px 15px;
+ 
+    /* Styles */
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease-out;
+}
+ 
+.wrapper-dropdown-5:after { /* Little arrow */
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    margin-top: -3px;
+    border-width: 6px 6px 0 6px;
+    border-style: solid;
+    border-color: #4cbeff transparent;
+}
+
+.wrapper-dropdown-5 .dropdown {
+    /* Size & position */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+ 
+    /* Styles */
+    background: #fff;
+    border-radius: 0 0 5px 5px;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-top: none;
+    border-bottom: none;
+    list-style: none;
+    transition: all 0.3s ease-out;
+ 
+    /* Hiding */
+    max-height: 0;
+    overflow: hidden;
+}
+
+.wrapper-dropdown-5 .dropdown li {
+    padding: 0;
+}
+ 
+.wrapper-dropdown-5 .dropdown li a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    padding: 10px 0;
+    transition: all 0.3s ease-out;
+    border-bottom: 1px solid #e6e8ea;
+}
+ 
+.wrapper-dropdown-5 .dropdown li:last-of-type a {
+    border: none;
+}
+ 
+.wrapper-dropdown-5 .dropdown li i {
+    margin-right: 5px;
+    color: inherit;
+    vertical-align: middle;
+}
+ 
+/* Hover state */
+ 
+.wrapper-dropdown-5 .dropdown li:hover a {
+    color: #57a9d9;
+}
+
+/* Active state */
+ 
+.wrapper-dropdown-5.active {
+    border-radius: 5px 5px 0 0;
+    background: #4cbeff;
+    box-shadow: none;
+    border-bottom: none;
+    color: white;
+}
+ 
+.wrapper-dropdown-5.active:after {
+    border-color: #82d1ff transparent;
+}
+ 
+.wrapper-dropdown-5.active .dropdown {
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    max-height: 400px;
+}
+
+.select-time-inputs-wrapper
+{
+	width: 100px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.settings input 
+{ 
+	padding: 9px;
+	border: solid 1px #E5E5E5;
+	outline: 0;
+	font: normal 13px/100% Verdana, Tahoma, sans-serif;
+	background: #FFFFFF url('bg_form.png') left top repeat-x;
+	background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+	background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
+	box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	width: 20px;
+
+}
+
+.settings input:hover, .setting input:focus { 
+	border-color: #C9C9C9; 
+	-webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
+}
+
+.settings label { 
+	margin-left: 10px; 
+	color: #999999; 
+}
+
+.submit-settings input,
+.button-bar input,
+.single-button input,
+.teams input {
+	width: auto;
+	padding: 9px 15px;
+	background: #617798;
+	border: 0;
+	font-size: 14px;
+	color: #FFFFFF;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	cursor: pointer;
+}
+
+.submit-settings input:hover,
+.button-bar input:hover,
+.single-button input,
+.teams input:hover
+{
+	background: #7084a2;
+	color: #000;
+}
+
+.submit-settings input:active,
+.button-bar input:active,
+.single-button:active
+.teams input:active
+{
+	background: #7084a2;
+	color: #FFFFFF;
+}
+
+.settings {
+	position: relative;
+	background: #FFF;
+	padding: 2em 3em;
+	width: auto;
+	margin: 20px auto;
+	width: 800px;
+}
+
+.settings-team-wrapper input.settings-team
+{
+	width: 200px;
+}
+.settings-team-wrapper input.settings-team-score
+{
+	width: 40px;
+}
+.teams
+{
+	text-align: center;
+	margin-top: 10px;
+}
+.team
+{
+	margin-right: 10px;
+}
+.team-score
+{
+	margin-right: 30px;
+}

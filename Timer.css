@@ -1,0 +1,62 @@
+.container {
+    width: 960px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.clock {
+    width: 800px;
+    margin: -5px auto;
+    color: #fff;
+}
+
+.clock ul {
+    width: 800px;
+    margin: 0 auto;
+    padding: 0px;
+    list-style: none;
+    text-align: center;
+}
+
+.clock ul li {
+    display: inline;
+    font-size: 8em;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 0 0 5px #000;
+}
+
+/* Simple Animation */
+@-webkit-keyframes mymove {
+    0% {
+		opacity: 1.0;
+		text-shadow: 0 0 20px #000;
+	}
+
+	50% {
+		opacity: 0;
+		text-shadow: none;
+	}
+
+	100% {
+		opacity: 1.0;
+		text-shadow: 0 0 20px #000;
+	}	
+}
+
+@-moz-keyframes mymove {
+    0% {
+        opacity: 1.0;
+        text-shadow: 0 0 20px #000;
+    }
+
+    50% {
+        opacity: 0;
+        text-shadow: none;
+    }
+
+    100% {
+        opacity: 1.0;
+        text-shadow: 0 0 20px #000;
+    }
+}
