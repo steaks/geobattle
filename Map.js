@@ -1,7 +1,7 @@
 (function () {
     var CHART_DIV_ID = "chart_div",
     	EXTRAS_HEIGHT = 185,
-    	CHART_WIDTH_TO_HEIGHT_RATIO = 1.6;
+    	CHART_WIDTH_TO_HEIGHT_RATIO = 1.8;
 
     function Map() {
         this.chartOptions = {
