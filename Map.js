@@ -7,7 +7,7 @@
         this.chartOptions = {
             legend: "none",
             tooltip: {
-                trigger: "focus"
+                trigger: "none"
             },
             region: GeoBattle.regions.world.code,
             resolution: GeoBattle.Region.resolutions.countries
