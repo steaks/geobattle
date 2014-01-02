@@ -35,8 +35,8 @@
                     scoreInputNode = inputNode.closest(SELECTOR_SETTINGS_TEAM_WRAPPER)
                                               .find(SELECTOR_SETTINGS_TEAM_SCORE),
                     score = existingTeam ? existingTeam.score : "";
-                if (scoreInputNode.prop(DATA_USER_INTPUT) !== TRUE) {
-                    scoreInputNode.attr(VALUE, score);
+                if (scoreInputNode.attr(DATA_USER_INTPUT) !== TRUE) {
+                    scoreInputNode.prop(VALUE, score);
                 }
             });
 
@@ -92,9 +92,12 @@
         $(SELECTOR_SETTINGS_TEAM_WRAPPER).each(function (i, w) {
             var wrapper = $(w),
                 name = wrapper.find(SELECTOR_SETTINGS_TEAM).prop(VALUE),
-                score = wrapper.find(SELECTOR_SETTINGS_TEAM_SCORE).prop(VALUE);
+                scoreNode = wrapper.find(SELECTOR_SETTINGS_TEAM_SCORE),
+                isScoreUserInput = scoreNode.attr(DATA_USER_INTPUT) === TRUE,
+                scoreInput = scoreNode.prop(VALUE) || 0;
+            
             if (name) {
-                GeoBattle.teamManager.getOrCreateTeam(name, score);
+                GeoBattle.teamManager.getOrCreateTeam(name, isScoreUserInput ? scoreInput : null);
                 teamNames.push(name);
             }
         });
@@ -113,8 +116,8 @@
                 team = activeTeams[i],
                 name = team ? team.name : "",
                 score = team ? team.score : "";
-            teamNameInput.attr(VALUE, name);
-            teamScoreInput.attr(VALUE, score);
+            teamNameInput.prop(VALUE, name);
+            teamScoreInput.prop(VALUE, score);
             teamScoreInput.attr(DATA_USER_INTPUT, FALSE);
         });
         $.magnificPopup.open({

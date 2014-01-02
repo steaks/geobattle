@@ -67,7 +67,7 @@
     TeamManager.prototype.getOrCreateTeam = function (name, score) {
         var existingTeam = this.getTeam(name), newTeam, teamSelector;
         if (existingTeam) {
-            if (score) {
+            if (!isNaN(score) && isFinite(score)) {
                 existingTeam.setScore(score);
             }
             existingTeam.show();
