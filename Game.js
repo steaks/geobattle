@@ -1,4 +1,7 @@
 (function () {
+	var TEMPLATE_HISTORY_LIST_ITEM= "<li class=\"history-list-item\">{countryName}</li>",
+		SELECTOR_HISTORY_LIST = ".history-list";
+	
     function Game(config) {
         this.activeDuration = config.activeDuration;
         this.breakDuration = config.breakDuration;
@@ -31,6 +34,9 @@
         }
     };
     Game.prototype._play = function (activeCountry) {
+    	var historyListItem;
+    		
+    	
         if (this.status === Game.statusOptions.stopped) {
             $.event.trigger(Game.events.stopped);
             return;
@@ -41,6 +47,10 @@
         }
         if (activeCountry) {
             GeoBattle.map.draw(activeCountry.renderRegion, activeCountry);
+            //log to file
+            console.log(activeCountry);
+            historyListItem = TEMPLATE_HISTORY_LIST_ITEM.replace("{countryName}", activeCountry.name);            
+            $(SELECTOR_HISTORY_LIST).prepend(historyListItem)
             setTimeout(this._play.bind(this), this.activeDuration);
         }
         else {

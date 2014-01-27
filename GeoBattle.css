@@ -12,22 +12,27 @@
 {
 	float: left;
 	margin-top: -87px;
-	margin-left: 110px;
+	margin-left: 170px;
 }
 
 .start-new-game-button
 {
-	margin-right: 85px;
+	margin-right: 17px;
 }
 
 .stop-game-button
 {
-	margin-right: 120px;
+	margin-right: 60px;
 }
 
 .single-button-right
 {
 	float: right;
+	margin-top: -87px;
+}
+
+.history-link
+{
 	margin-top: -87px;
 }
 
@@ -41,18 +46,39 @@ body
 	margin-left: auto;
 	margin-right: auto;
 }
-.settings
+.settings, 
+.history
+{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	position: relative;
+	background: #FFF;
+	padding: 2em 3em;
+	margin: 10px auto;
+	width: 800px;
+}
+
+.game-explanation
 {
 	width: 300px;
-	height: 800px;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
 }
 
+.game-explanation {
+	position: relative;
+	background: #FFF;
+	padding: 2em 3em;
+	width: auto;
+	margin: 20px auto;
+	width: 800px;
+}
+
 .settings-section
 {
-	margin-bottom: 40px;
+	margin-bottom: 25px;
 }
 
 .hidden
@@ -223,16 +249,11 @@ body
 	background: #7084a2;
 	color: #FFFFFF;
 }
-
-.settings {
-	position: relative;
-	background: #FFF;
-	padding: 2em 3em;
-	width: auto;
-	margin: 20px auto;
-	width: 800px;
+.settings-team-wrapper
+{
+	float: left;
+	margin-bottom: 5px;
 }
-
 .settings-team-wrapper input.settings-team
 {
 	width: 200px;
@@ -240,6 +261,10 @@ body
 .settings-team-wrapper input.settings-team-score
 {
 	width: 40px;
+}
+.submit-settings-button
+{
+	margin-top: 10px;
 }
 .teams
 {
@@ -253,4 +278,9 @@ body
 .team-score
 {
 	margin-right: 30px;
+}
+.history-list
+{
+	list-style-type: none;
+}
 }

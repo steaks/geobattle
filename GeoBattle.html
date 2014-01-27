@@ -7,6 +7,7 @@
         <link rel="stylesheet" type="text/css" href="Team.css">
         <script type='text/javascript' src='https://www.google.com/jsapi'></script>
         <script type="text/javascript" src="jquery/jquery-2.0.3.js"></script>
+        <script type="text/javascript" src="jquery/jquery.cookie.js"></script>        
         <script src="magnific-popup/jquery.magnific-popup.js"></script> 
         <script type="text/javascript" src="tipsy/tooltipsy.min.js"></script>
         <script type="text/javascript" src="Infrastructure.js"></script>
@@ -19,6 +20,9 @@
         <script type="text/javascript" src="GeoBattle.js"></script>
     </head>
     <body id="body">
+    	<div id="game-explanation" class="game-explanation mfp-hide">
+    		Welcome to Geo Battle!  Fill in "how to play here!"
+    	</div>
         <div id="settings" class="settings mfp-hide">
             <div class="settings-section">
                 <div id="dd" class="wrapper-dropdown-5" tabindex="1"><span class="settings-region-selection" data-region-selection="world">Select a region</span>
@@ -56,17 +60,20 @@
             <div class="select-teams settings-section">
                 <label for="settings-teams">What teams are playing?</label>
                 <br />
-                <div class="settings-team-wrapper">
-                    <label for="settings-team">Name:</label>
-                    <input class="settings-team" name="settings-team" type="text" value="" />
-                    <label for="settings-team-score">Score:</label>
-                    <input class="settings-team-score" name="settings-team-score" type="text" data-user-input="false" value="" />
-                </div>
-                <div class="settings-team-wrapper">
-                    <label for="settings-team">Name:</label>
-                    <input class="settings-team" name="settings-team" type="text" value="" />
-                    <label for="settings-team-score">Score:</label>
-                    <input class="settings-team-score" name="settings-team-score" type="text" data-user-input="false" value="" />
+                <br />
+                <div>
+	                <div class="settings-team-wrapper">
+	                    <label for="settings-team">Name:</label>
+	                    <input class="settings-team" name="settings-team" type="text" value="" />
+	                    <label for="settings-team-score">Score:</label>
+	                    <input class="settings-team-score" name="settings-team-score" type="text" data-user-input="false" value="" />
+	                </div>
+	                <div class="settings-team-wrapper">
+	                    <label for="settings-team">Name:</label>
+	                    <input class="settings-team" name="settings-team" type="text" value="" />
+	                    <label for="settings-team-score">Score:</label>
+	                    <input class="settings-team-score" name="settings-team-score" type="text" data-user-input="false" value="" />
+	                </div>
                 </div>
                 <div class="settings-team-wrapper">
                     <label for="settings-team">Name:</label>
@@ -125,8 +132,15 @@
                 </div>
                 <div class="single-button single-button-right start-new-game-button">
                     <input type="submit" class="stop-game" data-value="startNewGame" value="Start a new game"/>
+					<a class="history-link hidden" href="javaScript:void(0);">previous countries</a>                    
                 </div>
             </div>
+        </div>
+        <div id="history" class="history mfp-hide">
+        	<span>Previously displayed countries:</span>
+        	<div>
+        		<ul class="history-list"></ul>
+        	</div>
         </div>
     </body>
     

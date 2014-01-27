@@ -9,7 +9,6 @@
         //randomIndex = randomIndex + 1;
         //var country = this.countries[randomIndex];
         var country = this.countries[Math.floor(Math.random() * this.countries.length)];
-        console.log(country);
         return country;
     }
     Region.resolutions = {
