@@ -78,7 +78,7 @@ body
 
 .settings-section
 {
-	margin-bottom: 25px;
+	margin-bottom: 20px;
 }
 
 .hidden
@@ -256,7 +256,7 @@ body
 }
 .settings-team-wrapper input.settings-team
 {
-	width: 200px;
+	width: 160px;
 }
 .settings-team-wrapper input.settings-team-score
 {
@@ -282,5 +282,4 @@ body
 .history-list
 {
 	list-style-type: none;
-}
 }
