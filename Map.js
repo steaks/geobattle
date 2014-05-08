@@ -10,10 +10,10 @@
             tooltip: {
                 trigger: "none"
             },
-            region: GeoBattle.regions.world.code,
-            resolution: GeoBattle.Region.resolutions.countries
+            region: GeoBattle.toggles.worldAvailable ? GeoBattle.regions.world.code : GeoBattle.regions.unitedStates.code,
+            resolution: GeoBattle.toggles.worldAvailable ? GeoBattle.Region.resolutions.countries : GeoBattle.Region.resolutions.provinces
         };
-        this.region = GeoBattle.regions.world;
+        this.region = GeoBattle.toggles.worldAvailable ? GeoBattle.regions.world : GeoBattle.regions.unitedStates;
         this.activeCountry = null;
         
         if (!this.isOfflineMode()) {

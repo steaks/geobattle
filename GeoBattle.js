@@ -6,6 +6,8 @@
         SELECTOR_GAME_EXPLANATION = "#game-explanation",
         SELECTOR_HISTORY_LINK = ".history-link",
         SELECTOR_HISTORY = "#history",
+        SELECTOR_HISTORY_LIST_TITLE = ".history-list-title",
+        SELECTOR_HISTORY_LIST = ".history-list",
         //EVENTS
         EVENT_CLICK = "click",
         
@@ -115,6 +117,13 @@
             pauseButton.prop(VALUE, PAUSE_GAME);
         }
     };
+    
+    Controller.prototype.setupHistory = function (region) {
+    	var historyLinkText = region.resolution === "countries" ? "previous countries" : "previous states";
+    	$(SELECTOR_HISTORY_LINK).text(historyLinkText);
+        $(SELECTOR_HISTORY_LIST_TITLE).text(historyLinkText + ":");
+        $(SELECTOR_HISTORY_LIST).html("");
+    }
     
     GeoBattle.Controller = new Controller();
 }());

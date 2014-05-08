@@ -6,9 +6,14 @@
     }
     randomIndex = -1;
     Region.prototype.getRandomCountry = function () {
-        //randomIndex = randomIndex + 1;
-        //var country = this.countries[randomIndex];
-        var country = this.countries[Math.floor(Math.random() * this.countries.length)];
+    	var country;
+    	if(GeoBattle.toggles.nonRandomCountries){
+    		randomIndex = randomIndex + 1;
+            country = this.countries[randomIndex];    		
+    	}
+    	else {
+    		country = this.countries[Math.floor(Math.random() * this.countries.length)];
+    	}
         return country;
     }
     Region.resolutions = {

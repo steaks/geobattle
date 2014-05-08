@@ -9,7 +9,10 @@
         SELECTOR_SETTINGS_TEAM_WRAPPER = ".settings-team-wrapper",
         SELECTOR_SETTINGS_TEAM = ".settings-team",
         SELECTOR_SETTINGS_TEAM_SCORE = ".settings-team-score",
+        SELECTOR_SETTINGS_REGION_SELECTION_WRAPPER = ".settings-region-selection-wrapper",
 
+        CLASS_HIDDEN = "hidden",
+        
         DATA_REGION_SELECTION = "data-region-selection",
         DATA_USER_INTPUT = "data-user-input",
 
@@ -23,7 +26,12 @@
 
     function Settings() {
         $(document).ready(function () {
-            this.setupRegionDropdown();
+        	if (GeoBattle.toggles.worldAvailable) {
+        		this.setupRegionDropdown();
+        	}
+        	else {
+        		$(SELECTOR_SETTINGS_REGION_SELECTION_WRAPPER).addClass(CLASS_HIDDEN);
+        	}
             $(SELECTOR_SUBMIT_SETTINGS_BUTTON).on(EVENT_CLICK, function () {
                 GeoBattle.settings.submit();
             });
@@ -31,7 +39,7 @@
             $(SELECTOR_SETTINGS_TEAM).on(INPUT, function (e) {
                 var inputNode = $(e.currentTarget),
                     teamName = inputNode.prop(VALUE),
-                    existingTeam = GeoBattle.teamManager.getTeam(teamName),
+                    existingTeam = GeoBattle.teamManager.getTeamByName(teamName),
                     scoreInputNode = inputNode.closest(SELECTOR_SETTINGS_TEAM_WRAPPER)
                                               .find(SELECTOR_SETTINGS_TEAM_SCORE),
                     score = existingTeam ? existingTeam.score : "";
@@ -75,7 +83,9 @@
     };
 
     Settings.prototype.submit = function () {
-        var regionSelection = $(SELECTOR_SETTINGS_REGION_SELECTION).attr(DATA_REGION_SELECTION),
+        var regionSelection = GeoBattle.toggles.worldAvailable 
+        						? $(SELECTOR_SETTINGS_REGION_SELECTION).attr(DATA_REGION_SELECTION)
+        						: "unitedStates";
                 minutes = $(SELECTOR_SETTINGS_MINUTES).val(),
                 seconds = $(SELECTOR_SETTINGS_SECONDS).val(),
                 activeDuration = $(SELECTOR_SETTINGS_ACTIVE_DURATION).val(),
@@ -89,6 +99,7 @@
                     region: region
                 }),
                 teamNames = [];
+                
         $(SELECTOR_SETTINGS_TEAM_WRAPPER).each(function (i, w) {
             var wrapper = $(w),
                 name = wrapper.find(SELECTOR_SETTINGS_TEAM).prop(VALUE),
@@ -101,7 +112,8 @@
                 teamNames.push(name);
             }
         });
-
+        
+        GeoBattle.Controller.setupHistory(region);
         GeoBattle.teamManager.hideNotIncludedTeams(teamNames);
         $.magnificPopup.close();
         GeoBattle.gameManager.startGame(game);

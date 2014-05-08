@@ -1,12 +1,13 @@
 (function () {
     var CLASS_BUBBLE_TOOLTIP_TIP = "bubbletooltip_tip";
 
-    function Team(name, score) {
+    function Team(name, score, id) {
         this.name = name;
         this.score = Number(score) || 0;
+        this.id = id;
     }
 
-    Team.template = "<div class=\"team-wrapper {teamName}\"><input type=\"submit\" class=\"team\" value=\"{teamName}\"/><span class=\"team-score\">{score}</span></div>"
+    Team.template = "<div class=\"team-wrapper team-{teamId}\"><input type=\"submit\" class=\"team\" value=\"{teamName}\"/><span class=\"team-score\">{score}</span></div>"
 
     Team.prototype.addPoint = function () {
         this.score = this.score + 1;
@@ -24,18 +25,18 @@
     };
 
     Team.prototype._setScoreDisplay = function () {
-        var teamSelector = "." + this.name;
+        var teamSelector = ".team-" + this.id;
         $(teamSelector).find(".team-score").text(this.score);
     };
 
     Team.prototype.getDisplay = function () {
-        return Team.template.replace("{teamName}", this.name)
+        return Team.template.replace("{teamId}", this.id)
                             .replace("{teamName}", this.name)
                             .replace("{score}", this.score);
     };
 
     Team.prototype.registerScoreHandlers = function () {
-        var teamSelector = "." + this.name;
+        var teamSelector = ".team-" + this.id;
         $(teamSelector).on("click", function (e) {
             if (e.shiftKey) {
                 this.subtractPoint();
@@ -47,13 +48,13 @@
     };
 
     Team.prototype.hide = function () {
-        var teamSelector = "." + this.name;
+        var teamSelector = ".team-" + this.id;
         $(teamSelector).addClass("hidden");
         this.hidden = true;
     };
 
     Team.prototype.show = function () {
-        var teamSelector = "." + this.name;
+        var teamSelector = ".team-" + this.id;
         $(teamSelector).removeClass("hidden");
         this.hidden = false;
     };
@@ -65,16 +66,16 @@
     }
 
     TeamManager.prototype.getOrCreateTeam = function (name, score) {
-        var existingTeam = this.getTeam(name), newTeam, teamSelector;
+        var existingTeam = this.getTeamByName(name), newTeam, teamSelector;
         if (existingTeam) {
-            if (!isNaN(score) && isFinite(score)) {
+            if (!isNaN(score) && isFinite(score) && score !== null) {
                 existingTeam.setScore(score);
             }
             existingTeam.show();
         }
         else {
-            newTeam = new Team(name, score);
-            teamSelector = "." + newTeam.name;
+            newTeam = new Team(name, score, this.teams.length);
+            teamSelector = ".team-" + newTeam.id;
             this.teams.push(newTeam);
             $(".teams").append(newTeam.getDisplay());
             newTeam.registerScoreHandlers();
@@ -93,7 +94,7 @@
         }
     };
 
-    TeamManager.prototype.getTeam = function (name) {
+    TeamManager.prototype.getTeamByName = function (name) {
         var existingTeam;
         $.each(this.teams, function (i, t) {
             if (t.name === name) {

@@ -73,7 +73,7 @@
     };
     Game.prototype.requestStop = function () {
         this.status = Game.statusOptions.stopped;
-        GeoBattle.map.draw(GeoBattle.regions.world);
+        GeoBattle.map.draw(GeoBattle.toggles.worldAvailable ? GeoBattle.regions.world : GeoBattle.regions.unitedStates);
         $.event.trigger(Game.events.stopRequested);
         GeoBattle.timer.stop(/*suppressEvent*/true);
     };
