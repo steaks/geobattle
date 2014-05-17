@@ -1,3 +1,4 @@
 debug = True
-root_path = '/Path/To/Project/Root/Directory/'
+code_root_path = '/Path/To/Code/Root/Directory/'
+web_root_path = '/Path/To/Web/Root/Directory/'
 allowed_hosts = ['localhost']
