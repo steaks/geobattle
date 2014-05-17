@@ -1,8 +1,8 @@
 var GeoBattle = {};
 
 GeoBattle.toggles = {
-	gameExplanation: true,
+	gameExplanation: false,
 	history: true,
-	nonRandomCountries: true,
+	nonRandomCountries: false,
 	worldAvailable: false
 };
