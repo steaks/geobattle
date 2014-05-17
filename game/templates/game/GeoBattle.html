@@ -1,24 +1,28 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="magnific-popup/magnific-popup.css"> 
-        <link rel="stylesheet" type="text/css" href="GeoBattle.css">
-        <link rel="stylesheet" type="text/css" href="Settings.css">
-        <link rel="stylesheet" type="text/css" href="Timer.css">
-        <link rel="stylesheet" type="text/css" href="Team.css">
+        <link rel="stylesheet" href="{% static "game/magnific-popup/magnific-popup.css" %}"> 
+        <link rel="stylesheet" type="text/css" href="{% static "game/css/GeoBattle.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "game/css/Settings.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "game/css/Timer.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "game/css/Team.css" %}">
+        
         <script type='text/javascript' src='https://www.google.com/jsapi'></script>
-        <script type="text/javascript" src="jquery/jquery-2.0.3.js"></script>
-        <script type="text/javascript" src="jquery/jquery.cookie.js"></script>        
-        <script src="magnific-popup/jquery.magnific-popup.js"></script> 
-        <script type="text/javascript" src="tipsy/tooltipsy.min.js"></script>
-        <script type="text/javascript" src="Infrastructure.js"></script>
-        <script type="text/javascript" src="Region.js"></script>
-        <script type="text/javascript" src="Map.js"></script>
-        <script type="text/javascript" src="Timer.js"></script>
-        <script type="text/javascript" src="Team.js"></script>
-        <script type="text/javascript" src="Game.js"></script>
-        <script type="text/javascript" src="Settings.js"></script>
-        <script type="text/javascript" src="GeoBattle.js"></script>
+        <script type="text/javascript" src="{% static "game/jquery/jquery-2.0.3.js" %}"></script>
+        <script type="text/javascript" src="{% static "game/jquery/jquery.cookie.js" %}"></script>        
+        <script type="text/javascript" src="{% static "game/magnific-popup/jquery.magnific-popup.js" %}"></script> 
+        <script type="text/javascript" src="{% static "game/tipsy/tooltipsy.min.js" %}"></script>
+        <script type="text/javascript" src="{% static "game/js/Infrastructure.js" %}"></script>
+        <script type="text/javascript" src="{% static "game/js/Region.js" %}"></script>
+        <script type="text/javascript" src="{% static "game/js/Map.js" %}"></script>
+        <script type="text/javascript" src="{% static "game/js/Timer.js" %}"></script>
+        <script type="text/javascript" src="{% static "game/js/Team.js" %}"></script>
+        <script type="text/javascript" src="{% static "game/js/Game.js" %}"></script>
+        <script type="text/javascript" src="{% static "game/js/Settings.js" %}"></script>
+        <script type="text/javascript" src="{% static "game/js/GeoBattle.js" %}"></script>	
+        
     </head>
     <body id="body">
     	<div id="game-explanation" class="game-explanation mfp-hide">
