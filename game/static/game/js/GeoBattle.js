@@ -1,7 +1,7 @@
 (function () {
     var //SELECTORS
         SELECTOR_PAUSE_GAME = ".pause-game",
-        SELECTOR_STOP_GAME = ".stop-game",
+        SELECTOR_START_OR_STOP_GAME = ".start-or-stop-game",
         SELECTOR_SINGLE_BUTTON = ".single-button",
         SELECTOR_GAME_EXPLANATION = "#game-explanation",
         SELECTOR_HISTORY_LINK = ".history-link",
@@ -57,10 +57,10 @@
 	    	
 	        $(SELECTOR_PAUSE_GAME).on(EVENT_CLICK, this._onPause.bind(this));
 	
-	        $(SELECTOR_STOP_GAME).on(EVENT_CLICK, function (e) {
+	        $(SELECTOR_START_OR_STOP_GAME).on(EVENT_CLICK, function (e) {
 	            var game = GeoBattle.gameManager.getCurrentGame(),
 	                buttonState = $(e.currentTarget).attr(DATA_VALUE);
-	            if (game) {
+	            if (game && game.status !== GeoBattle.Game.statusOptions.stopped) {
 	                game.requestStop();
 	                $(SELECTOR_PAUSE_GAME).prop(VALUE, PAUSE_GAME);
 	            }
@@ -70,14 +70,14 @@
 	        });
 	
 	        $(document).on(GeoBattle.Game.events.stopRequested, function () {
-	            var stopButton = $(SELECTOR_STOP_GAME);
+	            var stopButton = $(SELECTOR_START_OR_STOP_GAME);
 	            stopButton.prop(VALUE, START_NEW_GAME);
 	            stopButton.closest(SELECTOR_SINGLE_BUTTON).addClass(CLASS_START_NEW_GAME_BUTTON).removeClass(CLASS_STOP_GAME_BUTTON);
 	            stopButton.attr(DATA_VALUE, StopButtonState.startNewGame);
 	        });
 	
 	        $(document).on(GeoBattle.Game.events.started, function () {
-	            var stopButton = $(SELECTOR_STOP_GAME);
+	            var stopButton = $(SELECTOR_START_OR_STOP_GAME);
 	            stopButton.prop(VALUE, STOP_GAME);
 	            stopButton.closest(SELECTOR_SINGLE_BUTTON).addClass(CLASS_STOP_GAME_BUTTON).removeClass(CLASS_START_NEW_GAME_BUTTON);
 	            stopButton.attr(DATA_VALUE, StopButtonState.stopGame);

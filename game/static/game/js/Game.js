@@ -88,7 +88,9 @@
 
         $(document).on(GeoBattle.Timer.events.stopped, function () {
             var game = this.getCurrentGame();
-            game.requestStop();
+            if (game.status !== Game.statusOptions.stopped) {
+            	game.requestStop();
+            }
         }.bind(this));
     }
 

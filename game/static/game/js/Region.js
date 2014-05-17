@@ -8,7 +8,7 @@
     Region.prototype.getRandomCountry = function () {
     	var country;
     	if(GeoBattle.toggles.nonRandomCountries){
-    		randomIndex = randomIndex + 1;
+    		randomIndex = randomIndex === this.countries.length ? 0 : randomIndex + 1;
             country = this.countries[randomIndex];    		
     	}
     	else {
