@@ -101,7 +101,11 @@
 	            
 	            return { name: name, score: score };
 	        }),
-	        teams = $.grep(teamInputs, function (ti) { return ti.name; }),
+	        teams = $.grep(teamInputs, function (ti) {
+	        	if (ti.name) {
+	        		return ti;
+	        	}
+	        }),
 	        teamNames = $.map(teams, function (t) { return t.name; }),
 	        teamScores = $.map(teams, function (t) { return t.score; }),	        
 	        errors = this._validate(minutes, seconds, activeDuration, breakDuration, teamScores),
@@ -122,14 +126,9 @@
             seconds: seconds,
             region: region,
         });
-        
-        if (name) {
-            GeoBattle.teamManager.getOrCreateTeam(name, isScoreUserInput ? scoreInput : null);
-            teamNames.push(name);
-        }
                 
         GeoBattle.Controller.setupHistory(region);
-        $.each(teams, function (t) { GeoBattle.teamManager.getOrCreateTeam(t.name, t.score); })
+        $.each(teams, function (i, t) { GeoBattle.teamManager.getOrCreateTeam(t.name, t.score); })
         GeoBattle.teamManager.hideNotIncludedTeams(teamNames);
         $.magnificPopup.close();
         GeoBattle.gameManager.startGame(game);
