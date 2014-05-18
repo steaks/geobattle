@@ -368,8 +368,8 @@
         { code: "US-WA", name: "Washington", regions: [regions.unitedStates], renderRegion: regions.unitedStates },
         { code: "US-WV", name: "West Virginia", regions: [regions.unitedStates], renderRegion: regions.unitedStates },
         { code: "US-WI", name: "Wisconsin", regions: [regions.unitedStates], renderRegion: regions.unitedStates },
-        { code: "US-WY", name: "Wyoming", regions: [regions.unitedStates], renderRegion: regions.unitedStates },
-        { code: "US-DC", name: "Washington D.C.", regions: [regions.unitedStates], renderRegion: regions.unitedStates },
+        { code: "US-WY", name: "Wyoming", regions: [regions.unitedStates], renderRegion: regions.unitedStates }
+        //{ code: "US-DC", name: "Washington D.C.", regions: [regions.unitedStates], renderRegion: regions.unitedStates },
     ];
 
     $.each(countries, function (i, country) {
