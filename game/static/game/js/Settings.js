@@ -10,6 +10,7 @@
         SELECTOR_SETTINGS_TEAM = ".settings-team",
         SELECTOR_SETTINGS_TEAM_SCORE = ".settings-team-score",
         SELECTOR_SETTINGS_REGION_SELECTION_WRAPPER = ".settings-region-selection-wrapper",
+        SELECTOR_SETTINGS_ERRORS = ".settings-errors",
 
         CLASS_HIDDEN = "hidden",
         
@@ -85,38 +86,74 @@
     Settings.prototype.submit = function () {
         var regionSelection = GeoBattle.toggles.worldAvailable 
         						? $(SELECTOR_SETTINGS_REGION_SELECTION).attr(DATA_REGION_SELECTION)
-        						: "unitedStates";
-                minutes = $(SELECTOR_SETTINGS_MINUTES).val(),
-                seconds = $(SELECTOR_SETTINGS_SECONDS).val(),
-                activeDuration = $(SELECTOR_SETTINGS_ACTIVE_DURATION).val(),
-                breakDuration = $(SELECTOR_SETTINGS_BREAK_DURATION).val(),
-                region = GeoBattle.regions[regionSelection],
-                game = new GeoBattle.Game({
-                    activeDuration: Number(activeDuration * 1000),
-                    breakDuration: Number(breakDuration * 1000),
-                    minutes: Number(minutes),
-                    seconds: Number(seconds),
-                    region: region
-                }),
-                teamNames = [];
-                
-        $(SELECTOR_SETTINGS_TEAM_WRAPPER).each(function (i, w) {
-            var wrapper = $(w),
-                name = wrapper.find(SELECTOR_SETTINGS_TEAM).prop(VALUE),
-                scoreNode = wrapper.find(SELECTOR_SETTINGS_TEAM_SCORE),
-                isScoreUserInput = scoreNode.attr(DATA_USER_INTPUT) === TRUE,
-                scoreInput = scoreNode.prop(VALUE) || 0;
-            
-            if (name) {
-                GeoBattle.teamManager.getOrCreateTeam(name, isScoreUserInput ? scoreInput : null);
-                teamNames.push(name);
-            }
+        						: "unitedStates",
+            minutes = parseInt($(SELECTOR_SETTINGS_MINUTES).val(), 10),
+            seconds = parseInt($(SELECTOR_SETTINGS_SECONDS).val(), 10),
+            activeDuration = parseInt($(SELECTOR_SETTINGS_ACTIVE_DURATION).val(), 10),
+            breakDuration = parseInt($(SELECTOR_SETTINGS_BREAK_DURATION).val(), 10),
+            teamInputs = $(SELECTOR_SETTINGS_TEAM_WRAPPER).map(function (i, w) {
+	            var wrapper = $(w),
+	                name = wrapper.find(SELECTOR_SETTINGS_TEAM).prop(VALUE),
+	                scoreNode = wrapper.find(SELECTOR_SETTINGS_TEAM_SCORE),
+	                isScoreUserInput = scoreNode.attr(DATA_USER_INTPUT) === TRUE,
+	                scoreInput = scoreNode.prop(VALUE) || 0,
+	                score = isScoreUserInput ? parseInt(scoreInput, 10) : null;
+	            
+	            return { name: name, score: score };
+	        }),
+	        teams = $.grep(teamInputs, function (ti) { return ti.name; }),
+	        teamNames = $.map(teams, function (t) { return t.name; }),
+	        teamScores = $.map(teams, function (t) { return t.score; }),	        
+	        errors = this._validate(minutes, seconds, activeDuration, breakDuration, teamScores),
+	        region,
+	        game;
+        
+        if (errors.length !== 0) {
+        	this._displayErrors(errors);
+        	return;
+        }
+        
+        region = GeoBattle.regions[regionSelection];
+
+        game = new GeoBattle.Game({
+            activeDuration: activeDuration * 1000,
+            breakDuration: breakDuration * 1000,
+            minutes: minutes,
+            seconds: seconds,
+            region: region,
         });
         
+        if (name) {
+            GeoBattle.teamManager.getOrCreateTeam(name, isScoreUserInput ? scoreInput : null);
+            teamNames.push(name);
+        }
+                
         GeoBattle.Controller.setupHistory(region);
+        $.each(teams, function (t) { GeoBattle.teamManager.getOrCreateTeam(t.name, t.score); })
         GeoBattle.teamManager.hideNotIncludedTeams(teamNames);
         $.magnificPopup.close();
         GeoBattle.gameManager.startGame(game);
+    };
+    
+    Settings.prototype._displayErrors = function (errors) {
+    	var errorMessages = $.map(errors, function (e) { return "<span class='settings-error'>" + e + "</span>"; });
+    	$(SELECTOR_SETTINGS_ERRORS).html(errorMessages);
+    };
+    
+    Settings.prototype._clearErrors = function () {
+    	$(SELECTOR_SETTINGS_ERRORS).html("");
+    };
+    
+    Settings.prototype._validate = function (minutes, seconds, activeDuration, breakDuration, teamScores) {
+    	var errors = [];
+    	if (isNaN(minutes) || isNaN(seconds) || isNaN(activeDuration) || isNaN(breakDuration)) {
+    		errors.push("Please only use numbers for time entries.");
+    	}
+    	if ($.grep(teamScores, function (s) { return isNaN(s); }).length !== 0) {
+    		errors.push("Please only use numbers for team scores.");
+    	}
+    	
+    	return errors;
     };
 
     Settings.prototype.open = function () {
@@ -132,6 +169,7 @@
             teamScoreInput.prop(VALUE, score);
             teamScoreInput.attr(DATA_USER_INTPUT, FALSE);
         });
+        this._clearErrors();
         $.magnificPopup.open({
             items: {
                 src: SELECTOR_SETTINGS,

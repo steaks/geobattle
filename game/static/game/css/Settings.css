@@ -1,4 +1,9 @@
 .settings-teams-row
 {
 	overflow: hidden;
-} 
+}
+.settings-error
+{
+	color: red;
+	display: block;
+}
